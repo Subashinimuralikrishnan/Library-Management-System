@@ -4,8 +4,9 @@
  2)Make a folder (eg:lib management sys), then save all these files<br>
  3)cd to the folder<br>
  4)>node server.js
- 5)Go to localhost:5000/ you can use the website!
- Home page of LMS-WebSite:
+ 5)Go to localhost:5000/ you can use the website!<br>
+ 
+ # Home page of LMS-WebSite:
 ![login](https://github.com/user-attachments/assets/8a663b43-e873-4dcc-a6c5-ba4bd14a69ea)
 
 
