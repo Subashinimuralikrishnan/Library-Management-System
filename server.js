@@ -16,6 +16,8 @@ app.use(adminRoutes);
 const studentRoutes=require('./routes/student');
 app.use(studentRoutes);
 
+
+
 app.use(express.static('public'));
 const port=5000;
 app.listen(port,()=>

@@ -31,7 +31,7 @@ function populateTable(books)
             <td>${new Date(book.borrowDate).toLocaleDateString()}</td>
             <td>${book.returnDate ? new Date(book.returnDate).tolocaleString():'Not yet returned!'}</td>
             <td>
-                ${book.returnDate ? '':`<button onclick="returnBook('${book.book._id}')">Return Book</button>`}
+                ${book.returnDate ? '':`<button onclick="returnBook('${book.book.id}')">Return Book</button>`}
             </td>`;
             tbody.appendChild(row);
         }
@@ -47,7 +47,7 @@ async function borrowBook()
 }
 
 try{
-    const response=await fetch(`${url}/boorow-book/${bookId}`,{
+    const response=await fetch(`${url}/borrow-book/${bookId}`,{
         method:'POST',
         headers:{
             'Authorization':`Bearer ${token}`,

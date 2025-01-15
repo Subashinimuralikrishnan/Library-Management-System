@@ -1,4 +1,5 @@
-document.getElementById('register-form').addEventListener('submit',function(e){
+document.getElementById('register-form').addEventListener('submit',
+    async function(e){
     e.preventDefault();
     const name=document.getElementById('name').value;
     const email=document.getElementById('email').value;
@@ -11,24 +12,25 @@ document.getElementById('register-form').addEventListener('submit',function(e){
         password:password,
         role:role
     };
+    try{
     console.log(regData);
-    fetch('http://localhost:5000/register',{
+    const response=await fetch('/register',{
         method:'POST',
         headers:
         {
             'Content-Type':'application/json'
         },
         body:JSON.stringify(regData)
-    })
-    .then(response=>{
-        if(!response.ok){
-            console.log(response.error)
-            throw new Error("HTTP error!");}
-        return response.json()})
+    });
     
-    .then(data=>
-    {
-        if(data.token)
+        if(!response.ok){
+            console.log(response);
+            const err= await response.json();
+            throw new Error(err.error);}
+        
+    
+    const data=await response.json();
+    if(data.token)
         {
             localStorage.setItem('token',data.token);
             if(role=='student'){
@@ -44,10 +46,10 @@ document.getElementById('register-form').addEventListener('submit',function(e){
             alert("Login failed!");
         }
 
-    })
-    .catch(error=>
+    }
+    catch(error)
     {
         console.error("Error:",error);
-    });
+    }
     
 });

@@ -14,6 +14,7 @@ router.post('/register',async(req,res)=>
         if(role=='student')
         {
         let student=await Student.findOne({email});
+        alert("Student already exists!");
         if(student) return res.status(400).json({error:"Student already exists"});
         student=new Student({name,email,password});
         await student.save();
@@ -21,8 +22,9 @@ router.post('/register',async(req,res)=>
         res.status(201).json({token});
         }
         else{
+            console.log(name,email,password);
             let admin=await Admin.findOne({email});
-            if(admin)return res.status(400).json("Admin already exists!");
+            if(admin)return res.status(400).json({error:"Admin already exists!"});
             admin=new Admin({name,email,password});
             await admin.save();
             const token=jwt.sign({_id:admin._id,role:'admin'},'secretKey');

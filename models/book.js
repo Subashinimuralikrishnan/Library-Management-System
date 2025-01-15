@@ -1,5 +1,9 @@
 const mongoose=require('mongoose');
 const BookSchema= new mongoose.Schema({
+    id:{
+        type:Number,
+        required:[true]
+    },
     title: {
         type:String, 
         required:[true,'All fields are mandatory!']
